@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/library_system
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: localhost
+    port: 1025
+    username: maildev
+    password: maildev
+    properties:
+      mail:
+        smtp: # This is to enable SMTP
+          trust: "*" # This is to trust all certificates
+        auth: true # This is to enable authentication
+        starttls:
+          enable: true # This is to enable STARTTLS
+        connectiontimeout: 5000 # This is to set the connection timeout
+        timeout: 3000 # This is to set the timeout
+        write-timeout: 5000 # This is to set the write timeout
