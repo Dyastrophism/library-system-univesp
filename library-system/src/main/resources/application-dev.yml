@@ -27,3 +27,9 @@ spring:
         connectiontimeout: 5000 # This is to set the connection timeout
         timeout: 3000 # This is to set the timeout
         write-timeout: 5000 # This is to set the write timeout
+
+application:
+  security:
+    jwt:
+      secret-key: c17fa4f6c064aeb614bcdbcb6e5757d805efd458c7e91eebd379af381ef03a08
+      expiration: 86400000 # 1 day
