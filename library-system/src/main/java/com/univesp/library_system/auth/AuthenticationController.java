@@ -1,6 +1,7 @@
 package com.univesp.library_system.auth;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     @ResponseStatus(ACCEPTED)
-    public ResponseEntity<?> register(@RequestBody @Valid RegistrationRequest registrationRequest) {
+    public ResponseEntity<?> register(@RequestBody @Valid RegistrationRequest registrationRequest) throws MessagingException {
         authenticationService.register(registrationRequest);
         return ResponseEntity.accepted().build();
     }

@@ -1,11 +1,15 @@
 package com.univesp.library_system.auth;
 
+import com.univesp.library_system.email.EmailService;
+import com.univesp.library_system.email.EmailTemplateName;
 import com.univesp.library_system.role.RoleRepository;
 import com.univesp.library_system.user.Token;
 import com.univesp.library_system.user.TokenRepository;
 import com.univesp.library_system.user.User;
 import com.univesp.library_system.user.UserRepository;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +25,11 @@ public class AuthenticationService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenRepository tokenRepository;
+    private final EmailService emailService;
+    @Value("${application.mailing.frontend.activation-url}")
+    private String activationUrl;
 
-    public void register(RegistrationRequest registrationRequest) {
+    public void register(RegistrationRequest registrationRequest) throws MessagingException {
         var userRole = roleRepository.findByName("USER")
                 .orElseThrow(() -> new RuntimeException("Role not found"));
         var user = User.builder()
@@ -38,9 +45,16 @@ public class AuthenticationService {
         sendValidationEmail(user);
     }
 
-    private void sendValidationEmail(User user) {
+    private void sendValidationEmail(User user) throws MessagingException {
         var newToken = generateAndSaveActivationToken(user);
-        // send email with token
+        emailService.sendEmail(
+                user.getEmail(),
+                user.getFullName(),
+                EmailTemplateName.ACTIVATION_ACCOUNT,
+                activationUrl,
+                newToken,
+                "Account Activation"
+        );
     }
 
     private String generateAndSaveActivationToken(User user) {
