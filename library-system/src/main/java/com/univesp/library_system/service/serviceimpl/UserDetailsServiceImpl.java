@@ -1,6 +1,6 @@
-package com.univesp.library_system.security;
+package com.univesp.library_system.service.serviceimpl;
 
-import com.univesp.library_system.user.UserRepository;
+import com.univesp.library_system.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

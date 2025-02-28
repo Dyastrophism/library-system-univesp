@@ -1,5 +1,6 @@
-package com.univesp.library_system.user;
+package com.univesp.library_system.repository;
 
+import com.univesp.library_system.domain.Token;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

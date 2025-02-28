@@ -1,8 +1,5 @@
-package com.univesp.library_system.user;
+package com.univesp.library_system.domain;
 
-import com.univesp.library_system.book.Book;
-import com.univesp.library_system.history.BookTransactionHistory;
-import com.univesp.library_system.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;

@@ -1,4 +1,4 @@
-package com.univesp.library_system.handler;
+package com.univesp.library_system.enums;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

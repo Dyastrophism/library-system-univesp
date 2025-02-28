@@ -1,4 +1,4 @@
-package com.univesp.library_system.email;
+package com.univesp.library_system.enums;
 
 import lombok.Getter;
 

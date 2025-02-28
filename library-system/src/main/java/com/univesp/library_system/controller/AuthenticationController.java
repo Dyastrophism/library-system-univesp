@@ -1,5 +1,9 @@
-package com.univesp.library_system.auth;
+package com.univesp.library_system.controller;
 
+import com.univesp.library_system.controller.request.AuthenticationRequest;
+import com.univesp.library_system.controller.response.AuthenticationResponse;
+import com.univesp.library_system.service.AuthenticationService;
+import com.univesp.library_system.controller.request.RegistrationRequest;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;

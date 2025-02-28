@@ -1,7 +1,5 @@
-package com.univesp.library_system.feedback;
+package com.univesp.library_system.domain;
 
-import com.univesp.library_system.book.Book;
-import com.univesp.library_system.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

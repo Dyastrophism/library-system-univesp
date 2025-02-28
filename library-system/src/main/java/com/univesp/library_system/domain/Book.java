@@ -1,9 +1,5 @@
-package com.univesp.library_system.book;
+package com.univesp.library_system.domain;
 
-import com.univesp.library_system.common.BaseEntity;
-import com.univesp.library_system.feedback.Feedback;
-import com.univesp.library_system.history.BookTransactionHistory;
-import com.univesp.library_system.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

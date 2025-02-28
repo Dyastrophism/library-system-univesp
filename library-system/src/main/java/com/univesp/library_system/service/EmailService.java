@@ -1,5 +1,6 @@
-package com.univesp.library_system.email;
+package com.univesp.library_system.service;
 
+import com.univesp.library_system.enums.EmailTemplateName;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;

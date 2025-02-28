@@ -1,4 +1,4 @@
-package com.univesp.library_system.auth;
+package com.univesp.library_system.controller.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

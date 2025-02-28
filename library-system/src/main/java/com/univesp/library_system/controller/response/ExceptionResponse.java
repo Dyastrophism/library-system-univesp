@@ -1,4 +1,4 @@
-package com.univesp.library_system.handler;
+package com.univesp.library_system.controller.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

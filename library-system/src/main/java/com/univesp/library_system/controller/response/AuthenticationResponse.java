@@ -1,4 +1,4 @@
-package com.univesp.library_system.auth;
+package com.univesp.library_system.controller.response;
 
 import lombok.Builder;
 

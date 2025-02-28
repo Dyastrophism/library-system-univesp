@@ -1,6 +1,6 @@
 package com.univesp.library_system.config;
 
-import com.univesp.library_system.user.User;
+import com.univesp.library_system.domain.User;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

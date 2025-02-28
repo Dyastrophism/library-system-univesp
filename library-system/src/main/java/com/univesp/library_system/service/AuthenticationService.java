@@ -1,13 +1,14 @@
-package com.univesp.library_system.auth;
+package com.univesp.library_system.service;
 
-import com.univesp.library_system.email.EmailService;
-import com.univesp.library_system.email.EmailTemplateName;
-import com.univesp.library_system.role.RoleRepository;
-import com.univesp.library_system.security.JwtService;
-import com.univesp.library_system.user.Token;
-import com.univesp.library_system.user.TokenRepository;
-import com.univesp.library_system.user.User;
-import com.univesp.library_system.user.UserRepository;
+import com.univesp.library_system.controller.request.AuthenticationRequest;
+import com.univesp.library_system.controller.request.RegistrationRequest;
+import com.univesp.library_system.controller.response.AuthenticationResponse;
+import com.univesp.library_system.enums.EmailTemplateName;
+import com.univesp.library_system.repository.RoleRepository;
+import com.univesp.library_system.domain.Token;
+import com.univesp.library_system.repository.TokenRepository;
+import com.univesp.library_system.domain.User;
+import com.univesp.library_system.repository.UserRepository;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

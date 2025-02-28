@@ -1,4 +1,4 @@
-package com.univesp.library_system.security;
+package com.univesp.library_system.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

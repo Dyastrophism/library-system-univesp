@@ -1,35 +1,29 @@
-package com.univesp.library_system.role;
+package com.univesp.library_system.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.univesp.library_system.user.User;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
+@Data
+@SuperBuilder
 @AllArgsConstructor
-@Entity
+@NoArgsConstructor
+@MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class Role {
+public class BaseEntity {
 
     @Id
     @GeneratedValue
     private Integer id;
-
-    @Column(unique = true)
-    private String name;
-
-    @ManyToMany(mappedBy = "roles")
-    @JsonIgnore // Avoid infinite recursion
-    private List<User> users;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -37,4 +31,10 @@ public class Role {
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
+    @CreatedBy
+    @Column(nullable = false, updatable = false)
+    private Integer createdBy;
+    @LastModifiedBy
+    @Column(insertable = false)
+    private Integer lastModifiedBy;
 }

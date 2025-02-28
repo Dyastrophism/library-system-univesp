@@ -1,8 +1,5 @@
-package com.univesp.library_system.history;
+package com.univesp.library_system.domain;
 
-import com.univesp.library_system.book.Book;
-import com.univesp.library_system.common.BaseEntity;
-import com.univesp.library_system.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;

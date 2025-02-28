@@ -1,4 +1,4 @@
-package com.univesp.library_system.user;
+package com.univesp.library_system.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
