@@ -1,5 +1,6 @@
 package com.univesp.library_system.feedback;
 
+import com.univesp.library_system.book.Book;
 import com.univesp.library_system.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,5 +19,9 @@ public class Feedback extends BaseEntity {
 
     private Double note;
     private String comment;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
 }
