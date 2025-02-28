@@ -1,21 +1,18 @@
 package com.univesp.library_system.book;
 
+import com.univesp.library_system.common.BaseEntity;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-public class Book {
+@Getter
+@Setter
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Book extends BaseEntity {
 
-    @Id
-    @GeneratedValue
-    private Integer id;
     private String title;
     private String authorName;
     private String isbn;
@@ -23,16 +20,6 @@ public class Book {
     private String bookCover;
     private boolean archived;
     private boolean shareable;
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdDate;
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime lastModifiedDate;
-    @CreatedBy
-    @Column(nullable = false, updatable = false)
-    private Integer createdBy;
-    @LastModifiedBy
-    @Column(insertable = false)
-    private Integer lastModifiedBy;
+
 }
+
