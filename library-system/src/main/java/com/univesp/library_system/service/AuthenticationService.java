@@ -36,6 +36,11 @@ public class AuthenticationService {
     @Value("${application.mailing.frontend.activation-url}")
     private String activationUrl;
 
+    /**
+     * Register user
+     * @param registrationRequest registration request
+     * @throws MessagingException messaging exception
+     */
     public void register(RegistrationRequest registrationRequest) throws MessagingException {
         var userRole = roleRepository.findByName("USER")
                 .orElseThrow(() -> new RuntimeException("Role not found"));
@@ -52,6 +57,11 @@ public class AuthenticationService {
         sendValidationEmail(user);
     }
 
+    /**
+     * Send validation email
+     * @param user user
+     * @throws MessagingException messaging exception
+     */
     private void sendValidationEmail(User user) throws MessagingException {
         var newToken = generateAndSaveActivationToken(user);
         emailService.sendEmail(
@@ -64,6 +74,11 @@ public class AuthenticationService {
         );
     }
 
+    /**
+     * Generate and save activation token
+     * @param user user
+     * @return activation token
+     */
     private String generateAndSaveActivationToken(User user) {
         String generatedToken = generateActivationCode();
         var token = Token.builder()
@@ -76,6 +91,10 @@ public class AuthenticationService {
         return generatedToken;
     }
 
+    /**
+     * Generate activation code
+     * @return activation code
+     */
     private String generateActivationCode() {
         String characters = "0123456789";
         StringBuilder codeBuilder = new StringBuilder();
@@ -87,6 +106,11 @@ public class AuthenticationService {
         return codeBuilder.toString();
     }
 
+    /**
+     * Authenticate
+     * @param authenticationRequest authentication request
+     * @return authentication response
+     */
     public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
         var auth = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -103,6 +127,11 @@ public class AuthenticationService {
                 .build();
     }
 
+    /**
+     * Activate account
+     * @param token token
+     * @throws MessagingException messaging exception
+     */
     public void activateAccount(String token) throws MessagingException {
         Token savedToken = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new RuntimeException("Token not found"));

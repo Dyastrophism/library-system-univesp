@@ -14,6 +14,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    /**
+     * Load user by username
+     * @param userEmail user email
+     * @return user details
+     * @throws UsernameNotFoundException username not found exception
+     */
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {

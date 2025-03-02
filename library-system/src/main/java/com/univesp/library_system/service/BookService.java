@@ -35,6 +35,12 @@ public class BookService {
     private final BookTransactionHistoryRepository bookTransactionHistoryRepository;
     private final FileStorageService fileStorageService;
 
+    /**
+     * Save book
+     * @param bookRequest book request
+     * @param connectedUser connected user
+     * @return book id
+     */
     public Integer saveBook(BookRequest bookRequest, Authentication connectedUser) {
         User user = ((User) connectedUser.getPrincipal());
         Book book = bookMapper.toBook(bookRequest);
@@ -42,12 +48,24 @@ public class BookService {
         return bookRepository.save(book).getId();
     }
 
+    /**
+     * Find book by id
+     * @param bookId book id
+     * @return book response
+     */
     public BookResponse findById(Integer bookId) {
         return bookRepository.findById(bookId)
                 .map(bookMapper::toBookResponse)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found"));
     }
 
+    /**
+     * Find all books by owner
+     * @param page page
+     * @param size size
+     * @param connectedUser connected user
+     * @return page response of books
+     */
     public PageResponse<BookResponse> findAllBooks(int page, int size, Authentication connectedUser) {
         User user = ((User) connectedUser.getPrincipal());
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
@@ -66,6 +84,13 @@ public class BookService {
         );
     }
 
+    /**
+     * Find all books by owner
+     * @param page page
+     * @param size size
+     * @param connectedUser connected user
+     * @return page response of books
+     */
     public PageResponse<BookResponse> findAllBooksByOwner(int page, int size, Authentication connectedUser) {
         User user = ((User) connectedUser.getPrincipal());
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
@@ -83,6 +108,13 @@ public class BookService {
         );
     }
 
+    /**
+     * Find all borrowed books
+     * @param page page
+     * @param size size
+     * @param connectedUser connected user
+     * @return page response of borrowed books
+     */
     public PageResponse<BorrowedBookResponse> findAllBorrowedBooks(int page, int size, Authentication connectedUser) {
         User user = ((User) connectedUser.getPrincipal());
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
@@ -103,6 +135,13 @@ public class BookService {
         );
     }
 
+    /**
+     * Find all returned books
+     * @param page page
+     * @param size size
+     * @param connectedUser connected user
+     * @return page response of borrowed books
+     */
     public PageResponse<BorrowedBookResponse> findAllReturnedBooks(int page, int size, Authentication connectedUser) {
         User user = ((User) connectedUser.getPrincipal());
         Pageable pageable = PageRequest.of(page, size, Sort.by("createdDate").descending());
@@ -123,6 +162,13 @@ public class BookService {
         );
     }
 
+    /**
+     * Update shareable status
+     * @param bookId book id
+     * @param shareable shareable status
+     * @param connectedUser connected user
+     * @return book id
+     */
     public Integer updateShareableStatus(Integer bookId, boolean shareable, Authentication connectedUser) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with ID::" + bookId));
@@ -134,6 +180,13 @@ public class BookService {
         return bookRepository.save(book).getId();
     }
 
+    /**
+     * Update archived status
+     * @param bookId book id
+     * @param archived archived status
+     * @param connectedUser connected user
+     * @return book id
+     */
     public Integer updateArchivedStatus(Integer bookId, boolean archived, Authentication connectedUser) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with ID::" + bookId));
@@ -145,6 +198,12 @@ public class BookService {
         return bookRepository.save(book).getId();
     }
 
+    /**
+     * Borrow book
+     * @param bookId book id
+     * @param connectedUser connected user
+     * @return book transaction history id
+     */
     public Integer borrowBook(Integer bookId, Authentication connectedUser) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with ID::" + bookId));
@@ -169,6 +228,12 @@ public class BookService {
         return bookTransactionHistoryRepository.save(bookTransactionHistory).getId();
     }
 
+    /**
+     * Return borrowed book
+     * @param bookId book id
+     * @param connectedUser connected user
+     * @return book transaction history id
+     */
     public Integer returnBorrowedBook(Integer bookId, Authentication connectedUser) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with ID::" + bookId));
@@ -186,6 +251,12 @@ public class BookService {
         return bookTransactionHistoryRepository.save(bookTransactionHistory).getId();
     }
 
+    /**
+     * Approve return borrowed book
+     * @param bookId book id
+     * @param connectedUser connected user
+     * @return book transaction history id
+     */
     public Integer approveReturnBorrowedBook(Integer bookId, Authentication connectedUser) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found::" + bookId));
@@ -203,6 +274,12 @@ public class BookService {
         return bookTransactionHistoryRepository.save(bookTransactionHistory).getId();
     }
 
+    /**
+     * Upload book cover picture
+     * @param bookId book id
+     * @param file file
+     * @param connectedUser connected user
+     */
     public void uploadBookCoverPicture(Integer bookId, MultipartFile file, Authentication connectedUser) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with ID::" + bookId));

@@ -11,6 +11,11 @@ import java.nio.file.Path;
 @Slf4j
 public class FileUtils {
 
+    /**
+     * Read file from location
+     * @param fileUrl file url
+     * @return file content
+     */
     public static byte[] readFileFromLocation(String fileUrl) {
         if (StringUtils.isBlank(fileUrl)) {
             return null;

@@ -24,6 +24,12 @@ public class FileStorageService {
     @Value("${application.file.upload.photos-output-path}")
     private String fileUploadPath;
 
+    /**
+     * Save file
+     * @param sourceFile source file
+     * @param userId user id
+     * @return file path
+     */
     public String saveFile(
             @Nonnull MultipartFile sourceFile,
             @Nonnull Integer userId
@@ -32,6 +38,12 @@ public class FileStorageService {
         return uploadFile(sourceFile, fileUploadSubPath);
     }
 
+    /**
+     * Save file
+     * @param sourceFile source file
+     * @param fileUploadSubPath file upload sub path
+     * @return file path
+     */
     private String uploadFile(
             @Nonnull MultipartFile sourceFile,
             @Nonnull String fileUploadSubPath
@@ -58,6 +70,11 @@ public class FileStorageService {
         return null;
     }
 
+    /**
+     * Get file extension
+     * @param originalFilename original filename
+     * @return file extension
+     */
     private String getFileExtension(String originalFilename) {
         if (originalFilename == null || originalFilename.isEmpty()) {
             return "";

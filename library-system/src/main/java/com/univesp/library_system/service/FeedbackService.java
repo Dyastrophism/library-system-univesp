@@ -29,6 +29,12 @@ public class FeedbackService {
     private final FeedbackRepository feedbackRepository;
     private final FeedbackMapper feedbackMapper;
 
+    /**
+     * Save feedback
+     * @param feedbackRequest feedback request
+     * @param authentication authentication
+     * @return feedback id
+     */
     public Integer saveFeedback(FeedbackRequest feedbackRequest, Authentication authentication) {
         Book book = bookRepository.findById(feedbackRequest.bookId())
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with ID:: " + feedbackRequest.bookId()));
@@ -43,6 +49,14 @@ public class FeedbackService {
         return feedbackRepository.save(feedback).getId();
     }
 
+    /**
+     * Find all feedbacks by book
+     * @param bookId book id
+     * @param page page
+     * @param size size
+     * @param authentication authentication
+     * @return page response of feedbacks
+     */
     public PageResponse<FeedbackResponse> findAllFeedbacksByBook(Integer bookId, Integer page, Integer size, Authentication authentication) {
         Pageable pageable = PageRequest.of(page, size);
         User user = (User) authentication.getPrincipal();

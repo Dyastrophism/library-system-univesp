@@ -27,6 +27,12 @@ public class JwtService {
         return generateToken(new HashMap<>(), userDetails);
     }
 
+    /**
+     * Generate token
+     * @param claims claims
+     * @param userDetails user details
+     * @return token
+     */
     public String generateToken(
             Map<String, Object> claims,
             UserDetails userDetails
@@ -35,6 +41,13 @@ public class JwtService {
         return buildToken(claims, userDetails, jwtExpiration);
     }
 
+    /**
+     * Generate token
+     * @param extraClaims claims
+     * @param userDetails user details
+     * @param jwtExpiration jwt expiration
+     * @return token
+     */
     private String buildToken(
             Map<String, Object> extraClaims,
             UserDetails userDetails,
@@ -55,21 +68,44 @@ public class JwtService {
                 .compact();
     }
 
+    /**
+     * Validate token
+     * @param token token
+     * @param userDetails user details
+     * @return is token valid
+     */
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 
     }
 
+    /**
+     * Extract username
+     * @param token token
+     * @return username
+     */
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
+    /**
+     * Extract claim
+     * @param token token
+     * @param claimsResolver claims resolver
+     * @param <T> type
+     * @return claim
+     */
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
     }
 
+    /**
+     * Extract all claims
+     * @param token token
+     * @return claims
+     */
     private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
@@ -79,14 +115,28 @@ public class JwtService {
                 .getBody();
     }
 
+    /**
+     * Is token expired
+     * @param token token
+     * @return is token expired
+     */
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
+    /**
+     * Extract expiration
+     * @param token token
+     * @return expiration
+     */
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
 
+    /**
+     * Get signing key
+     * @return signing key
+     */
     private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);

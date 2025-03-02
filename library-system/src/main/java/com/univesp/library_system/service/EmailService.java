@@ -22,6 +22,16 @@ public class EmailService {
     private final JavaMailSender javaMailSender;
     private final SpringTemplateEngine templateEngine;
 
+    /**
+     * Send email
+     * @param to to
+     * @param username username
+     * @param emailTemplateName email template name
+     * @param confirmationUrl confirmation url
+     * @param activationCode activation code
+     * @param subject subject
+     * @throws MessagingException messaging exception
+     */
     @Async
     public void sendEmail(
             String to,
