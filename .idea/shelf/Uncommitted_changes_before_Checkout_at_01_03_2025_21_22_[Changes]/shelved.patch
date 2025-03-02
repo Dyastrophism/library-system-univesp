@@ -1,0 +1,55 @@
+Index: library-system/src/main/java/com/univesp/library_system/auth/AuthenticationService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationService.java b/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationService.java
+new file mode 100644
+--- /dev/null	(date 1740522329022)
++++ b/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationService.java	(date 1740522329022)
+@@ -0,0 +1,9 @@
++package com.univesp.library_system.auth;
++
++import org.springframework.stereotype.Service;
++
++@Service
++public class AuthenticationService {
++
++
++}
+Index: library-system/src/main/java/com/univesp/library_system/auth/AuthenticationController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationController.java b/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationController.java
+new file mode 100644
+--- /dev/null	(date 1740522329017)
++++ b/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationController.java	(date 1740522329017)
+@@ -0,0 +1,26 @@
++package com.univesp.library_system.auth;
++
++import io.swagger.v3.oas.annotations.tags.Tag;
++import lombok.RequiredArgsConstructor;
++import org.springframework.http.HttpStatus;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.PostMapping;
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.ResponseStatus;
++import org.springframework.web.bind.annotation.RestController;
++
++@RestController
++@RequestMapping("auth")
++@RequiredArgsConstructor
++@Tag(name = "Authentication", description = "Authentication operations")
++public class AuthenticationController {
++
++    private final AuthenticationService authenticationService;
++
++    @PostMapping("/register")
++    @ResponseStatus(HttpStatus.CREATED)
++    public ResponseEntity<?> register() {
++        
++    }
++
++}
