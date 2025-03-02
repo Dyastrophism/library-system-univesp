@@ -1,7 +1,7 @@
 package com.univesp.library_system;
 
-import com.univesp.library_system.role.Role;
-import com.univesp.library_system.role.RoleRepository;
+import com.univesp.library_system.domain.Role;
+import com.univesp.library_system.repository.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
