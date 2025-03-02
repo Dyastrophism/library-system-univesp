@@ -7,6 +7,8 @@ import com.univesp.library_system.domain.Book;
 import com.univesp.library_system.domain.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
+import static com.univesp.library_system.service.serviceimpl.FileUtils.readFileFromLocation;
+
 @Service
 public class BookMapper {
 
@@ -30,8 +32,7 @@ public class BookMapper {
                 .authorName(book.getAuthorName())
                 .synopsis(book.getSynopsis())
                 .ownerName(book.getOwner().getFullName())
-                // TODO: implement later
-                // .cover(book.getCover())
+                .cover(readFileFromLocation(book.getBookCover()))
                 .rate(book.getRate())
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
