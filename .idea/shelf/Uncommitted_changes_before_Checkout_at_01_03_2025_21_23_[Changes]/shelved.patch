@@ -1,0 +1,182 @@
+Index: library-system/src/main/java/com/univesp/library_system/auth/AuthenticationService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.univesp.library_system.auth;\r\n\r\nimport com.univesp.library_system.email.EmailService;\r\nimport com.univesp.library_system.email.EmailTemplateName;\r\nimport com.univesp.library_system.role.RoleRepository;\r\nimport com.univesp.library_system.security.JwtService;\r\nimport com.univesp.library_system.user.Token;\r\nimport com.univesp.library_system.user.TokenRepository;\r\nimport com.univesp.library_system.user.User;\r\nimport com.univesp.library_system.user.UserRepository;\r\nimport jakarta.mail.MessagingException;\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.beans.factory.annotation.Value;\r\nimport org.springframework.security.authentication.AuthenticationManager;\r\nimport org.springframework.security.authentication.UsernamePasswordAuthenticationToken;\r\nimport org.springframework.security.crypto.password.PasswordEncoder;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.security.SecureRandom;\r\nimport java.time.LocalDateTime;\r\nimport java.util.HashMap;\r\nimport java.util.List;\r\n\r\n@Service\r\n@RequiredArgsConstructor\r\npublic class AuthenticationService {\r\n\r\n    private final UserRepository userRepository;\r\n    private final RoleRepository roleRepository;\r\n    private final PasswordEncoder passwordEncoder;\r\n    private final TokenRepository tokenRepository;\r\n    private final EmailService emailService;\r\n    private final AuthenticationManager authenticationManager;\r\n    private final JwtService jwtService;\r\n    @Value(\"${application.mailing.frontend.activation-url}\")\r\n    private String activationUrl;\r\n\r\n    public void register(RegistrationRequest registrationRequest) throws MessagingException {\r\n        var userRole = roleRepository.findByName(\"USER\")\r\n                .orElseThrow(() -> new RuntimeException(\"Role not found\"));\r\n        var user = User.builder()\r\n                .firstName(registrationRequest.firstName())\r\n                .lastName(registrationRequest.lastName())\r\n                .email(registrationRequest.email())\r\n                .password(passwordEncoder.encode(registrationRequest.password()))\r\n                .accountLocked(false)\r\n                .enabled(true)\r\n                .roles(List.of(userRole))\r\n                .build();\r\n        userRepository.save(user);\r\n        sendValidationEmail(user);\r\n    }\r\n\r\n    private void sendValidationEmail(User user) throws MessagingException {\r\n        var newToken = generateAndSaveActivationToken(user);\r\n        emailService.sendEmail(\r\n                user.getEmail(),\r\n                user.getFullName(),\r\n                EmailTemplateName.ACTIVATION_ACCOUNT,\r\n                activationUrl,\r\n                newToken,\r\n                \"Account Activation\"\r\n        );\r\n    }\r\n\r\n    private String generateAndSaveActivationToken(User user) {\r\n        String generatedToken = generateActivationCode();\r\n        var token = Token.builder()\r\n                .token(generatedToken)\r\n                .createdAt(LocalDateTime.now())\r\n                .expiresAt(LocalDateTime.now().plusMinutes(15))\r\n                .user(user)\r\n                .build();\r\n        tokenRepository.save(token);\r\n        return generatedToken;\r\n    }\r\n\r\n    private String generateActivationCode() {\r\n        String characters = \"0123456789\";\r\n        StringBuilder codeBuilder = new StringBuilder();\r\n        SecureRandom random = new SecureRandom();\r\n        for (int i = 0; i < 6; i++) {\r\n            int randomIndex = random.nextInt(characters.length());\r\n            codeBuilder.append(characters.charAt(randomIndex));\r\n        }\r\n        return codeBuilder.toString();\r\n    }\r\n\r\n    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {\r\n        var auth = authenticationManager.authenticate(\r\n                new UsernamePasswordAuthenticationToken(\r\n                        authenticationRequest.email(),\r\n                        authenticationRequest.password()\r\n                )\r\n        );\r\n        var claims = new HashMap<String, Object>();\r\n        var user = (User) auth.getPrincipal();\r\n        claims.put(\"fullName\", user.getFullName());\r\n        var jwtToken = jwtService.generateToken(claims, user);\r\n        return AuthenticationResponse.builder()\r\n                .token(jwtToken)\r\n                .build();\r\n    }\r\n\r\n    public void activateAccount(String token) throws MessagingException {\r\n        Token savedToken = tokenRepository.findByToken(token)\r\n                .orElseThrow(() -> new RuntimeException(\"Token not found\"));\r\n        if (LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {\r\n            sendValidationEmail(savedToken.getUser());\r\n            throw new RuntimeException(\"Token expired\");\r\n        }\r\n        var user = userRepository.findById(savedToken.getId())\r\n                .orElseThrow(() -> new RuntimeException(\"User not found\"));\r\n        user.setEnabled(true);\r\n        userRepository.save(user);\r\n        savedToken.setValidatedAt(LocalDateTime.now());\r\n        tokenRepository.save(savedToken);\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationService.java b/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationService.java
+--- a/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationService.java	(revision d656fc3aeff05d0ebcfc12e31937c8795ee8451a)
++++ b/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationService.java	(date 1740874972114)
+@@ -1,119 +1,9 @@
+ package com.univesp.library_system.auth;
+ 
+-import com.univesp.library_system.email.EmailService;
+-import com.univesp.library_system.email.EmailTemplateName;
+-import com.univesp.library_system.role.RoleRepository;
+-import com.univesp.library_system.security.JwtService;
+-import com.univesp.library_system.user.Token;
+-import com.univesp.library_system.user.TokenRepository;
+-import com.univesp.library_system.user.User;
+-import com.univesp.library_system.user.UserRepository;
+-import jakarta.mail.MessagingException;
+-import lombok.RequiredArgsConstructor;
+-import org.springframework.beans.factory.annotation.Value;
+-import org.springframework.security.authentication.AuthenticationManager;
+-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+-import org.springframework.security.crypto.password.PasswordEncoder;
+ import org.springframework.stereotype.Service;
+ 
+-import java.security.SecureRandom;
+-import java.time.LocalDateTime;
+-import java.util.HashMap;
+-import java.util.List;
+-
+ @Service
+-@RequiredArgsConstructor
+ public class AuthenticationService {
+ 
+-    private final UserRepository userRepository;
+-    private final RoleRepository roleRepository;
+-    private final PasswordEncoder passwordEncoder;
+-    private final TokenRepository tokenRepository;
+-    private final EmailService emailService;
+-    private final AuthenticationManager authenticationManager;
+-    private final JwtService jwtService;
+-    @Value("${application.mailing.frontend.activation-url}")
+-    private String activationUrl;
+-
+-    public void register(RegistrationRequest registrationRequest) throws MessagingException {
+-        var userRole = roleRepository.findByName("USER")
+-                .orElseThrow(() -> new RuntimeException("Role not found"));
+-        var user = User.builder()
+-                .firstName(registrationRequest.firstName())
+-                .lastName(registrationRequest.lastName())
+-                .email(registrationRequest.email())
+-                .password(passwordEncoder.encode(registrationRequest.password()))
+-                .accountLocked(false)
+-                .enabled(true)
+-                .roles(List.of(userRole))
+-                .build();
+-        userRepository.save(user);
+-        sendValidationEmail(user);
+-    }
+ 
+-    private void sendValidationEmail(User user) throws MessagingException {
+-        var newToken = generateAndSaveActivationToken(user);
+-        emailService.sendEmail(
+-                user.getEmail(),
+-                user.getFullName(),
+-                EmailTemplateName.ACTIVATION_ACCOUNT,
+-                activationUrl,
+-                newToken,
+-                "Account Activation"
+-        );
+-    }
+-
+-    private String generateAndSaveActivationToken(User user) {
+-        String generatedToken = generateActivationCode();
+-        var token = Token.builder()
+-                .token(generatedToken)
+-                .createdAt(LocalDateTime.now())
+-                .expiresAt(LocalDateTime.now().plusMinutes(15))
+-                .user(user)
+-                .build();
+-        tokenRepository.save(token);
+-        return generatedToken;
+-    }
+-
+-    private String generateActivationCode() {
+-        String characters = "0123456789";
+-        StringBuilder codeBuilder = new StringBuilder();
+-        SecureRandom random = new SecureRandom();
+-        for (int i = 0; i < 6; i++) {
+-            int randomIndex = random.nextInt(characters.length());
+-            codeBuilder.append(characters.charAt(randomIndex));
+-        }
+-        return codeBuilder.toString();
+-    }
+-
+-    public AuthenticationResponse authenticate(AuthenticationRequest authenticationRequest) {
+-        var auth = authenticationManager.authenticate(
+-                new UsernamePasswordAuthenticationToken(
+-                        authenticationRequest.email(),
+-                        authenticationRequest.password()
+-                )
+-        );
+-        var claims = new HashMap<String, Object>();
+-        var user = (User) auth.getPrincipal();
+-        claims.put("fullName", user.getFullName());
+-        var jwtToken = jwtService.generateToken(claims, user);
+-        return AuthenticationResponse.builder()
+-                .token(jwtToken)
+-                .build();
+-    }
+-
+-    public void activateAccount(String token) throws MessagingException {
+-        Token savedToken = tokenRepository.findByToken(token)
+-                .orElseThrow(() -> new RuntimeException("Token not found"));
+-        if (LocalDateTime.now().isAfter(savedToken.getExpiresAt())) {
+-            sendValidationEmail(savedToken.getUser());
+-            throw new RuntimeException("Token expired");
+-        }
+-        var user = userRepository.findById(savedToken.getId())
+-                .orElseThrow(() -> new RuntimeException("User not found"));
+-        user.setEnabled(true);
+-        userRepository.save(user);
+-        savedToken.setValidatedAt(LocalDateTime.now());
+-        tokenRepository.save(savedToken);
+-    }
+ }
+Index: library-system/src/main/java/com/univesp/library_system/auth/AuthenticationController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.univesp.library_system.auth;\r\n\r\nimport io.swagger.v3.oas.annotations.tags.Tag;\r\nimport jakarta.mail.MessagingException;\r\nimport jakarta.validation.Valid;\r\nimport lombok.RequiredArgsConstructor;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport static org.springframework.http.HttpStatus.ACCEPTED;\r\n\r\n@RestController\r\n@RequestMapping(\"auth\")\r\n@RequiredArgsConstructor\r\n@Tag(name = \"Authentication\", description = \"Authentication API\")\r\npublic class AuthenticationController {\r\n\r\n    private final AuthenticationService authenticationService;\r\n\r\n    @PostMapping(\"/register\")\r\n    @ResponseStatus(ACCEPTED)\r\n    public ResponseEntity<?> register(@RequestBody @Valid RegistrationRequest registrationRequest) throws MessagingException {\r\n        authenticationService.register(registrationRequest);\r\n        return ResponseEntity.accepted().build();\r\n    }\r\n\r\n    @PostMapping(\"/authenticate\")\r\n    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody @Valid AuthenticationRequest authenticationRequest) {\r\n        return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));\r\n    }\r\n\r\n    @GetMapping(\"/activate-account\")\r\n    public void confirm(@RequestParam String token) throws MessagingException {\r\n        authenticationService.activateAccount(token);\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationController.java b/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationController.java
+--- a/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationController.java	(revision d656fc3aeff05d0ebcfc12e31937c8795ee8451a)
++++ b/library-system/src/main/java/com/univesp/library_system/auth/AuthenticationController.java	(date 1740874972124)
+@@ -1,36 +1,26 @@
+ package com.univesp.library_system.auth;
+ 
+ import io.swagger.v3.oas.annotations.tags.Tag;
+-import jakarta.mail.MessagingException;
+-import jakarta.validation.Valid;
+ import lombok.RequiredArgsConstructor;
++import org.springframework.http.HttpStatus;
+ import org.springframework.http.ResponseEntity;
+-import org.springframework.web.bind.annotation.*;
+-
+-import static org.springframework.http.HttpStatus.ACCEPTED;
++import org.springframework.web.bind.annotation.PostMapping;
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.ResponseStatus;
++import org.springframework.web.bind.annotation.RestController;
+ 
+ @RestController
+ @RequestMapping("auth")
+ @RequiredArgsConstructor
+-@Tag(name = "Authentication", description = "Authentication API")
++@Tag(name = "Authentication", description = "Authentication operations")
+ public class AuthenticationController {
+ 
+     private final AuthenticationService authenticationService;
+ 
+     @PostMapping("/register")
+-    @ResponseStatus(ACCEPTED)
+-    public ResponseEntity<?> register(@RequestBody @Valid RegistrationRequest registrationRequest) throws MessagingException {
+-        authenticationService.register(registrationRequest);
+-        return ResponseEntity.accepted().build();
+-    }
+-
+-    @PostMapping("/authenticate")
+-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody @Valid AuthenticationRequest authenticationRequest) {
+-        return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
++    @ResponseStatus(HttpStatus.CREATED)
++    public ResponseEntity<?> register() {
++        
+     }
+ 
+-    @GetMapping("/activate-account")
+-    public void confirm(@RequestParam String token) throws MessagingException {
+-        authenticationService.activateAccount(token);
+-    }
+ }
