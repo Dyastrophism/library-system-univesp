@@ -4,36 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2bc8290-c821-4337-a2ad-c4b85ab74e27" name="Changes" comment="atualizando dependencias">
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/openapi/openapi.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="e2bc8290-c821-4337-a2ad-c4b85ab74e27" name="Changes" comment="adicionando angular">
+      <change afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/.vscode/extensions.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/.vscode/launch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/.vscode/tasks.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/angular.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.config.server.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.routes.server.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.routes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/main.server.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/server.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/src/styles.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/tsconfig.app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/library-system-ui/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-ui/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-ui/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-ui/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +134,7 @@
       <workItem from="1740929367615" duration="12013000" />
       <workItem from="1741004097648" duration="8181000" />
       <workItem from="1741117396820" duration="591000" />
-      <workItem from="1741213178755" duration="7955000" />
+      <workItem from="1741213178755" duration="9710000" />
     </task>
     <task id="LOCAL-00001" summary="user e roles">
       <option name="closed" value="true" />
@@ -248,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741007369461</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="adicionando angular">
+      <option name="closed" value="true" />
+      <created>1741221499466</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1741221499466</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,6 +248,7 @@
     <MESSAGE value="implementação dos feedbacks" />
     <MESSAGE value="adicionando swagger" />
     <MESSAGE value="atualizando dependencias" />
-    <option name="LAST_COMMIT_MESSAGE" value="atualizando dependencias" />
+    <MESSAGE value="adicionando angular" />
+    <option name="LAST_COMMIT_MESSAGE" value="adicionando angular" />
   </component>
 </project>
