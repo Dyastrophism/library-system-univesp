@@ -4,46 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2bc8290-c821-4337-a2ad-c4b85ab74e27" name="Changes" comment="adicionando swagger">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/library-system-univesp.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_03_2025_21_22_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_03_2025_21_22__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_03_2025_21_23_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_03_2025_21_23_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_01_03_2025_21_23__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/.vscode/extensions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/.vscode/launch.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/.vscode/tasks.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/angular.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.config.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.config.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.routes.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.routes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/main.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/main.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/src/styles.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/tsconfig.app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library-system-ui/tsconfig.spec.json" afterDir="false" />
+    <list default="true" id="e2bc8290-c821-4337-a2ad-c4b85ab74e27" name="Changes" comment="atualizando dependencias">
+      <change afterPath="$PROJECT_DIR$/library-system-ui/src/openapi/openapi.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/.vscode/launch.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/.vscode/tasks.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/library-system-ui/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.config.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.routes.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/app/app.routes.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/main.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/src/styles.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/library-system-ui/tsconfig.spec.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +53,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="documents" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -93,6 +83,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.library-system [clean].executor": "Run",
+    "Maven.library-system [install].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -100,7 +92,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.LibrarySystemApplication.executor": "Debug",
-    "git-widget-placeholder": "adding-angularjs",
+    "git-widget-placeholder": "adding-front",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Dyastrophism/PersonalProjects/library-system-univesp/library-system/pom.xml",
     "node.js.detected.package.eslint": "true",
@@ -108,6 +100,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.api-gen.executor": "Debug",
+    "ts.external.directory.path": "C:\\Users\\Dyastrophism\\PersonalProjects\\library-system-univesp\\library-system-ui\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -117,7 +111,7 @@
       <recent name="com.univesp.library_system.security" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.LibrarySystemApplication">
     <configuration name="LibrarySystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="library-system" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.univesp.library_system.LibrarySystemApplication" />
@@ -125,6 +119,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="api-gen" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/library-system-ui/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="api-gen" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.api-gen" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -146,7 +155,10 @@
       <workItem from="1740520297505" duration="1706000" />
       <workItem from="1740874559869" duration="49000" />
       <workItem from="1740874661192" duration="5147000" />
-      <workItem from="1740929367615" duration="11882000" />
+      <workItem from="1740929367615" duration="12013000" />
+      <workItem from="1741004097648" duration="8181000" />
+      <workItem from="1741117396820" duration="591000" />
+      <workItem from="1741213178755" duration="7955000" />
     </task>
     <task id="LOCAL-00001" summary="user e roles">
       <option name="closed" value="true" />
@@ -220,7 +232,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740947158587</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="adicionando swagger">
+      <option name="closed" value="true" />
+      <created>1740949337874</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1740949337874</updated>
+    </task>
+    <task id="LOCAL-00011" summary="atualizando dependencias">
+      <option name="closed" value="true" />
+      <created>1741007369461</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1741007369461</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +263,7 @@
     <MESSAGE value="finalizando implementações do sistema de book" />
     <MESSAGE value="implementação dos feedbacks" />
     <MESSAGE value="adicionando swagger" />
-    <option name="LAST_COMMIT_MESSAGE" value="adicionando swagger" />
+    <MESSAGE value="atualizando dependencias" />
+    <option name="LAST_COMMIT_MESSAGE" value="atualizando dependencias" />
   </component>
 </project>
